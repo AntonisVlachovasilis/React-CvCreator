@@ -114,7 +114,7 @@ const PerInfo = ({
             setMailDoc(mail);
             setDescDoc(desc);
             setPicSrcDoc(picSrc);
-            setWorkable(!workable);
+            setWorkable(true);
           }}
         >
           Υποβολή
@@ -123,9 +123,7 @@ const PerInfo = ({
           className="edit-btn"
           onClick={(e) => {
             e.preventDefault();
-            if (workable === true) {
-              setWorkable(!workable);
-            }
+            setWorkable(false);
           }}
         >
           Επεξεργασία

@@ -6,7 +6,6 @@ import EduInfo from "./EduInfo";
 import { useState } from "react";
 
 const CvGenerator = () => {
-  // const [perinfo, setPerInfo] = useState({name:""});
   const [cvNameDoc, setcvNameDoc] = useState("");
   const [cvLastNameDoc, setcvLastNameDoc] = useState("");
   const [cvProfDoc, setCvProfDoc] = useState("");
