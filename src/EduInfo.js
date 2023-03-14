@@ -1,3 +1,4 @@
+import { faMoneyBillTrendUp } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useState, useEffect } from "react";
 
@@ -87,7 +88,7 @@ const EduInfo = (
             setFieldDoc(field);
             setFromDoc(from);
             setEndDoc(endTime);
-            setWorkable(!workable);
+            setWorkable(true);
           }}
         >
           Υποβολή
@@ -97,7 +98,7 @@ const EduInfo = (
           onClick={(e) => {
             e.preventDefault();
             if (workable === true) {
-              setWorkable(!workable);
+              setWorkable(false);
             }
           }}
         >

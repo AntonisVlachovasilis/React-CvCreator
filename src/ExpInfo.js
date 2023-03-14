@@ -77,7 +77,7 @@ const ExpInfo = (
             setTownDoc(town);
             setStDateDoc(stDate);
             setEndDateDoc(endDate);
-            setWorkable(!workable);
+            setWorkable(true);
           }}
         >
           Υποβολή
@@ -87,7 +87,7 @@ const ExpInfo = (
           onClick={(e) => {
             e.preventDefault();
             if (workable === true) {
-              setWorkable(!workable);
+              setWorkable(false);
             }
           }}
         >
