@@ -1,33 +1,29 @@
-import { faMoneyBillTrendUp } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useState, useEffect } from "react";
 
-const EduInfo = (
-  setSchoolDoc,
-  setRegionDoc,
-  setDegreeDoc,
-  setFieldDoc,
-  setFromDoc,
-  setEndDoc,
-  reset,
-  setReset
-) => {
-  const [school, setSchool] = useState("");
-  const [region, setRegion] = useState("");
-  const [degree, setDegree] = useState("");
-  const [field, setField] = useState("");
-  const [from, setFrom] = useState("");
-  const [endTime, setEnd] = useState("");
+const EduInfo = (setEducation, reset, setReset) => {
+  const [educInfo, setEducInfo] = useState({
+    school: "",
+    region: "",
+    degree: "",
+    field: "",
+    from: "",
+    endTime: "",
+  });
+
   const [workable, setWorkable] = useState(false);
 
   useEffect(() => {
     if (reset === true) {
-      setSchool("");
-      setRegion("");
-      setDegree("");
-      setField("");
-      setFrom("");
-      setEnd("");
+      setEducInfo({
+        ...educInfo,
+        school: "",
+        region: "",
+        degree: "",
+        field: "",
+        from: "",
+        endTime: "",
+      });
       setWorkable(false);
       setReset(false);
     }
@@ -39,55 +35,60 @@ const EduInfo = (
         <input
           type="text"
           placeholder="Εκπαιδευτικό Ίδρυμα"
-          value={school}
+          value={educInfo.school}
           disabled={workable}
-          onChange={(e) => setSchool(e.target.value)}
+          onChange={(e) => setEducInfo({ ...educInfo, school: e.target.value })}
         />
         <input
           type="text"
           placeholder="Πόλη"
-          value={region}
+          value={educInfo.region}
           disabled={workable}
-          onChange={(e) => setRegion(e.target.value)}
+          onChange={(e) => setEducInfo({ ...educInfo, region: e.target.value })}
         />
         <input
           type="text"
           placeholder="Επίπεδο Πτυχίου"
-          value={degree}
+          value={educInfo.degree}
           disabled={workable}
-          onChange={(e) => setDegree(e.target.value)}
+          onChange={(e) => setEducInfo({ ...educInfo, degree: e.target.value })}
         />
         <input
           type="text"
           placeholder="Αντικείμενο Σπουδών"
-          value={field}
+          value={educInfo.field}
           disabled={workable}
-          onChange={(e) => setField(e.target.value)}
+          onChange={(e) => setEducInfo({ ...educInfo, field: e.target.value })}
         />
         <input
           type="month"
           placeholder="Από"
-          value={from}
+          value={educInfo.from}
           disabled={workable}
-          onChange={(e) => setFrom(e.target.value)}
+          onChange={(e) => setEducInfo({ ...educInfo, from: e.target.value })}
         />
         <input
           type="month"
           placeholder="Έως"
-          value={endTime}
+          value={educInfo.endTime}
           disabled={workable}
-          onChange={(e) => setEnd(e.target.value)}
+          onChange={(e) =>
+            setEducInfo({ ...educInfo, endTime: e.target.value })
+          }
         />
         <button
           className="submit-btn"
           disabled={workable}
           onClick={(e) => {
-            setSchoolDoc(school);
-            setRegionDoc(region);
-            setDegreeDoc(degree);
-            setFieldDoc(field);
-            setFromDoc(from);
-            setEndDoc(endTime);
+            setEducation({
+              ...educInfo,
+              schoolDoc: educInfo.school,
+              regionDoc: educInfo.region,
+              degreeDoc: educInfo.degree,
+              fieldDoc: educInfo.field,
+              fromDoc: educInfo.from,
+              endTimeDoc: educInfo.endTime,
+            });
             setWorkable(true);
           }}
         >

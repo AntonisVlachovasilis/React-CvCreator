@@ -1,25 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-const PerInfo = ({
-  setcvNameDoc,
-  setcvLastNameDoc,
-  setAddressDoc,
-  setCvProfDoc,
-  setTelDoc,
-  setMailDoc,
-  setDescDoc,
-  setPicSrcDoc,
-  reset,
-  setReset,
-}) => {
-  const [cvName, setcvName] = useState("");
-  const [cvLastName, setcvLastName] = useState("");
-  const [cvProf, setCvProf] = useState("");
-  const [address, setAddress] = useState("");
-  const [tel, setTel] = useState("");
-  const [mail, setMail] = useState("");
-  const [desc, setDesc] = useState("");
+const PerInfo = ({ setInfoPerDoc, setPicSrcDoc, reset, setReset }) => {
+  const [infoPer, setInfoPer] = useState({
+    cvName: "",
+    cvLastName: "",
+    cvProf: "",
+    address: "",
+    tel: "",
+    mail: "",
+    desc: "",
+  });
   const [picSrc, setPicSrc] = useState();
   const [workable, setWorkable] = useState(false);
 
@@ -29,19 +20,20 @@ const PerInfo = ({
   };
   useEffect(() => {
     if (reset === true) {
-      setcvName("");
-      setcvLastName("");
-      setCvProf("");
-      setAddress("");
-      setTel("");
-      setMail("");
-      setDesc("");
-      setPicSrc("");
+      setInfoPer({
+        ...infoPer,
+        cvName: "",
+        cvLastName: "",
+        cvProf: "",
+        address: "",
+        tel: "",
+        mail: "",
+        desc: "",
+      });
       setWorkable(false);
       setReset(false);
     }
   }, [reset]);
-
   return (
     <div>
       <h3>Προσωπικές Πληροφορίες</h3>
@@ -49,23 +41,25 @@ const PerInfo = ({
         <input
           type="text"
           placeholder="Όνομα"
-          value={cvName}
+          value={infoPer.cvName}
           disabled={workable}
-          onChange={(e) => setcvName(e.target.value)}
+          onChange={(e) => setInfoPer({ ...infoPer, cvName: e.target.value })}
         />
         <input
           type="text"
           placeholder="Επώνυμο"
-          value={cvLastName}
+          value={infoPer.cvLastName}
           disabled={workable}
-          onChange={(e) => setcvLastName(e.target.value)}
+          onChange={(e) =>
+            setInfoPer({ ...infoPer, cvLastName: e.target.value })
+          }
         />
         <input
           type="text"
           placeholder="Ειδικότητα"
-          value={cvProf}
+          value={infoPer.cvProf}
           disabled={workable}
-          onChange={(e) => setCvProf(e.target.value)}
+          onChange={(e) => setInfoPer({ ...infoPer, cvProf: e.target.value })}
         />
         <input
           type="file"
@@ -77,42 +71,46 @@ const PerInfo = ({
         <input
           type="text"
           placeholder="Διεύθυνση"
-          value={address}
+          value={infoPer.address}
           disabled={workable}
-          onChange={(e) => setAddress(e.target.value)}
+          onChange={(e) => setInfoPer({ ...infoPer, address: e.target.value })}
         />
         <input
           type="tel"
           placeholder="Τηλέφωνο"
-          value={tel}
+          value={infoPer.tel}
           disabled={workable}
-          onChange={(e) => setTel(e.target.value)}
+          onChange={(e) => setInfoPer({ ...infoPer, tel: e.target.value })}
         />
         <input
           type="email"
           placeholder="Email"
-          value={mail}
+          value={infoPer.mail}
           disabled={workable}
-          onChange={(e) => setMail(e.target.value)}
+          onChange={(e) => setInfoPer({ ...infoPer, mail: e.target.value })}
         />
         <textarea
           type="text"
           placeholder="Περιγραφή"
-          value={desc}
+          value={infoPer.desc}
           disabled={workable}
-          onChange={(e) => setDesc(e.target.value)}
+          onChange={(e) => setInfoPer({ ...infoPer, desc: e.target.value })}
         ></textarea>
         <button
           className="submit-btn"
           onClick={(e) => {
             e.preventDefault();
-            setcvNameDoc(cvName);
-            setcvLastNameDoc(cvLastName);
-            setCvProfDoc(cvProf);
-            setAddressDoc(address);
-            setTelDoc(tel);
-            setMailDoc(mail);
-            setDescDoc(desc);
+            setInfoPerDoc({
+              ...infoPer,
+              cvNameDoc: infoPer.cvName,
+              cvLastName: infoPer.cvLastName,
+              cvProfDoc: infoPer.cvProf,
+              addressDoc: infoPer.address,
+              telDoc: infoPer.tel,
+              mailDoc: infoPer.mail,
+              descDoc: infoPer.desc,
+            });
+
             setPicSrcDoc(picSrc);
             setWorkable(true);
           }}

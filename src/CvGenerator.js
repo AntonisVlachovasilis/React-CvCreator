@@ -6,27 +6,33 @@ import EduInfo from "./EduInfo";
 import { useState } from "react";
 
 const CvGenerator = () => {
-  const [cvNameDoc, setcvNameDoc] = useState("");
-  const [cvLastNameDoc, setcvLastNameDoc] = useState("");
-  const [cvProfDoc, setCvProfDoc] = useState("");
-  const [addressDoc, setAddressDoc] = useState("");
-  const [telDoc, setTelDoc] = useState("");
-  const [mailDoc, setMailDoc] = useState("");
-  const [descDoc, setDescDoc] = useState("");
+  const [infoPerDoc, setInfoPerDoc] = useState({
+    cvNameDoc: "",
+    cvLastNameDoc: "",
+    cvProfDoc: "",
+    addressDoc: "",
+    telDoc: "",
+    mailDoc: "",
+    descDoc: "",
+  });
   const [picSrcDoc, setPicSrcDoc] = useState();
 
-  const [dutyDoc, setDutyDoc] = useState("");
-  const [companyDoc, setCompanyDoc] = useState("");
-  const [townDoc, setTownDoc] = useState("");
-  const [stDateDoc, setStDateDoc] = useState("");
-  const [endDateDoc, setEndDateDoc] = useState("");
+  const [infoExp, setInfoExp] = useState({
+    dutyDoc: "",
+    companyDoc: "",
+    townDoc: "",
+    stDateDoc: "",
+    endDateDoc: "",
+  });
 
-  const [schoolDoc, setSchoolDoc] = useState("");
-  const [regionDoc, setRegionDoc] = useState("");
-  const [degreeDoc, setDegreeDoc] = useState("");
-  const [fieldDoc, setFieldDoc] = useState("");
-  const [fromDoc, setFromDoc] = useState("");
-  const [endTimeDoc, setEndDoc] = useState("");
+  const [education, setEducation] = useState({
+    schoolDoc: "",
+    regionDoc: "",
+    degreeDoc: "",
+    fieldDoc: "",
+    fromDoc: "",
+    endTimeDoc: "",
+  });
   const [reset, setReset] = useState(false);
   return (
     <div className="app-body">
@@ -37,13 +43,7 @@ const CvGenerator = () => {
         <div className="form-container-wrapper">
           <div className="p-info-cont">
             <PerInfo
-              setcvNameDoc={setcvNameDoc}
-              setcvLastNameDoc={setcvLastNameDoc}
-              setCvProfDoc={setCvProfDoc}
-              setAddressDoc={setAddressDoc}
-              setTelDoc={setTelDoc}
-              setMailDoc={setMailDoc}
-              setDescDoc={setDescDoc}
+              setInfoPerDoc={setInfoPerDoc}
               setPicSrcDoc={setPicSrcDoc}
               reset={reset}
               setReset={setReset}
@@ -51,11 +51,7 @@ const CvGenerator = () => {
           </div>
           <div className="exp-info">
             <ExpInfo
-              setDutyDoc={setDutyDoc}
-              setCompanyDoc={setCompanyDoc}
-              setTownDoc={setTownDoc}
-              setStDateDoc={setStDateDoc}
-              setEndDateDoc={setEndDateDoc}
+              setInfoExp={setInfoExp}
               reset={reset}
               setReset={setReset}
             />
@@ -63,12 +59,7 @@ const CvGenerator = () => {
           <div className="edu-info">
             <h3>Εκπαίδευση</h3>
             <EduInfo
-              setSchoolDoc={setSchoolDoc}
-              setRegionDoc={setRegionDoc}
-              setDegreeDoc={setDegreeDoc}
-              setFieldDoc={setFieldDoc}
-              setFromDoc={setFromDoc}
-              setEndDoc={setEndDoc}
+              setEducation={setEducation}
               reset={reset}
               setReset={setReset}
             />
@@ -78,24 +69,35 @@ const CvGenerator = () => {
               className="reset-btn"
               onClick={(e) => {
                 e.preventDefault();
-                setcvNameDoc("");
-                setcvLastNameDoc("");
-                setCvProfDoc("");
-                setAddressDoc("");
-                setTelDoc("");
-                setMailDoc("");
-                setDescDoc("");
-                setDutyDoc("");
-                setCompanyDoc("");
-                setTownDoc("");
-                setStDateDoc("");
-                setEndDateDoc("");
-                setSchoolDoc("");
-                setRegionDoc("");
-                setDegreeDoc("");
-                setFieldDoc("");
-                setFromDoc("");
-                setEndDoc("");
+                setInfoPerDoc({
+                  ...infoPerDoc,
+                  cvNameDoc: "",
+                  cvLastNameDoc: "",
+                  cvProfDoc: "",
+                  addressDoc: "",
+                  telDoc: "",
+                  mailDoc: "",
+                  descDoc: "",
+                });
+
+                setInfoExp({
+                  ...infoExp,
+                  dutyDoc: "",
+                  companyDoc: "",
+                  townDoc: "",
+                  stDateDoc: "",
+                  endDateDoc: "",
+                });
+
+                setEducation({
+                  ...education,
+                  schoolDoc: "",
+                  regionDoc: "",
+                  degreeDoc: "",
+                  fieldDoc: "",
+                  fromDoc: "",
+                  endTimeDoc: "",
+                });
                 setPicSrcDoc();
                 setReset(true);
               }}
@@ -107,38 +109,42 @@ const CvGenerator = () => {
         <div className="final-wrapper">
           <div className="doc-heading">
             <div className="heading-container">
-              {cvNameDoc} {cvLastNameDoc}
+              {infoPerDoc.cvNameDoc} {infoPerDoc.cvLastNameDoc}
             </div>
-            <div className="profession-container">{cvProfDoc}</div>
+            <div className="profession-container">{infoPerDoc.cvProfDoc}</div>
           </div>
           <div className="doc-container">
             <div className="skills-cont">
               <h2>Περιγραφή:</h2>
-              <div className="desc-cont">{descDoc}</div>
+              <div className="desc-cont">{infoPerDoc.descDoc}</div>
               <h2>Εργασιακή Εμπειρία:</h2>
               <div className="exp-cont">
                 <div className="time-duty-container">
                   <div className="total-time">
-                    Από {stDateDoc} μέχρι {endDateDoc}
+                    Από {infoExp.stDateDoc} μέχρι {infoExp.endDateDoc}
                   </div>
-                  <div className="duty">{dutyDoc}</div>
+                  <div className="duty">{infoExp.dutyDoc}</div>
                 </div>
                 <div className="company">
-                  {companyDoc} , {townDoc}
+                  {infoExp.companyDoc} , {infoExp.townDoc}
                 </div>
               </div>
               <h2>Εκπαίδευση:</h2>
               <div className="edu-cont">
                 <div className="time-edu-container">
                   <div className="edu-time">
-                    Από {fromDoc} μέχρι {endTimeDoc}
+                    Από {education.fromDoc} μέχρι {education.endTimeDoc}
                   </div>
                   <div className="school">
-                    {schoolDoc} , {regionDoc}
+                    {education.schoolDoc} , {education.regionDoc}
                   </div>
                 </div>
-                <div className="degreeDoc">Επίπεδο σπουδών: {degreeDoc}</div>
-                <div className="fieldDoc">Αντικείμενο σπουδών: {fieldDoc}</div>
+                <div className="degreeDoc">
+                  Επίπεδο σπουδών: {education.degreeDoc}
+                </div>
+                <div className="fieldDoc">
+                  Αντικείμενο σπουδών: {education.fieldDoc}
+                </div>
               </div>
             </div>
             <div className="per-container-wrapper">
@@ -148,11 +154,11 @@ const CvGenerator = () => {
               <div className="sp-container">
                 <h2>Προσωπικές Πληροφορίες</h2>
                 <div>Διεύθυνση:</div>
-                <div className="address-container">{addressDoc}</div>
+                <div className="address-container">{infoPerDoc.addressDoc}</div>
                 Τηλέφωνο:
-                <div className="phone-container">{telDoc}</div>
+                <div className="phone-container">{infoPerDoc.telDoc}</div>
                 Email:
-                <div className="mail-container">{mailDoc}</div>
+                <div className="mail-container">{infoPerDoc.mailDoc}</div>
               </div>
             </div>
           </div>
