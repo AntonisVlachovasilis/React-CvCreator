@@ -57,7 +57,6 @@ const CvGenerator = () => {
             />
           </div>
           <div className="edu-info">
-            <h3>Εκπαίδευση</h3>
             <EduInfo
               setEducation={setEducation}
               reset={reset}

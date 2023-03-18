@@ -31,6 +31,7 @@ const EduInfo = (setEducation, reset, setReset) => {
 
   return (
     <div>
+      <h3>Εκπαίδευση</h3>
       <form className="edu-info-form">
         <input
           type="text"
